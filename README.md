@@ -1,8 +1,12 @@
-gambio-gx-multislider
-=====================
+gambio-gx-multislider v1.0
+==========================
 ------------------------------------
 
-Multislider für Gambio v2.1.x.x mit Text-Layern
+Multislider für Gambio v2.1.x.x mit Text-Layern - kostenlos!
+
+Eine kleine Demo findest Du hier: [Gambio Multislider v1.0](http://www.stargutschein.de/content/gambio-gx2-slider-modul.html)
+
+
 
 **Vorbereitung:**
 -----------------
@@ -13,11 +17,9 @@ Multislider für Gambio v2.1.x.x mit Text-Layern
 * Sichere die Dateien des Shops vom FTP
 
 
-* Führe die beiliegende SQL-Datei in einem geeignetem SQL-Programm aus. Bsp: phpMyAdmin oder MySQLDumer
+* Führe die beiliegende SQL-Datei in einem geeignetem SQL-Programm aus. Bsp: [phpMyAdmin](http://www.phpmyadmin.net/home_page/index.php) oder [MySQLDumer](http://www.mysqldumper.de/)
 * Lade die Datei-Struktur 1:1 auf Deinen Webserver ins Shopverzeichnis. Es werden keine vorhandenen Dateien überschrieben
 
-[phpMyAdmin]:http://www.phpmyadmin.net/home_page/index.php
-[MySQLDumer]:http://www.mysqldumper.de/
 
 
 **Integration:**
@@ -39,6 +41,8 @@ gm_javascript.js.php
 			include_once DIR_FS_CATALOG.'multislider/js/js_include.php';
 		}
 ```
+
+
 
 ------------------------
 *öffne:*
@@ -64,6 +68,8 @@ gm_javascript.js.php
 	    $this->set_content_data('MODULE_multislider', $_multislider_view);
 ```
 
+
+
 --------------------------
 
 *öffne*
@@ -81,3 +87,9 @@ gm_javascript.js.php
 ```
 {$MODULE_multislider}
 ```
+
+
+---------------------------
+
+Fertig!
+
