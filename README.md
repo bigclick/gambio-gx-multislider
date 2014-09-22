@@ -1,10 +1,9 @@
 gambio-gx-multislider v1.0
 ==========================
-------------------------------------
 
 Multislider für Gambio v2.1.x.x mit Text-Layern - kostenlos!
 
-Eine kleine Demo findest Du hier: [Gambio Multislider v1.0](http://www.stargutschein.de/content/gambio-gx2-slider-modul.html)
+Ein kleines Demo-Video findest Du hier: [Gambio Multislider v1.0](http://www.stargutschein.de/content/gambio-gx2-slider-modul.html)
 
 
 
@@ -92,4 +91,16 @@ gm_javascript.js.php
 ---------------------------
 
 Fertig!
+
+Nach der Installation:
+--------
+Da Gambio von Haus aus immer einen Cache aktiviert hat, ist es wichtig nach dem Einbau alle Cache-Dateien des Systems zu löschen. 
+Dazu bitte einfach im Menüpunkt "Toolbox" im Admin-Bereich den Link "Cache leeren" auswählen und die ersten beiden Links anklicken.
+
+
+Bugs:
+-----
+Sollte wieder erwarten ein Fehler auftauchen, schreibe in den [Bug-Tracker](https://github.com/bigclick/gambio-gx-multislider/issues/new). Wir werden uns so schnell wie möglich darum kümmern.
+
+
 
