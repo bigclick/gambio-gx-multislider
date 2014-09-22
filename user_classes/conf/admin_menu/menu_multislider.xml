@@ -1,0 +1,7 @@
+<?xml version="1.0"?>
+<!-- {load_language_text section="admin_menu"} -->
+<admin_menu>
+	<menugroup id="BOX_MULTISLIDER" sort="10" background="../../../multislider/img/multislider-icon.png" title="Multislider">
+		<menuitem sort="1" link="multislider.php" title="Multislider" />
+	</menugroup>
+</admin_menu>
