@@ -18,6 +18,7 @@ Ein kleines Demo-Video findest Du hier: [Gambio Multislider v1.0](http://www.sta
 
 * Führe die beiliegende SQL-Datei in einem geeignetem SQL-Programm aus. Bsp: [phpMyAdmin](http://www.phpmyadmin.net/home_page/index.php) oder [MySQLDumer](http://www.mysqldumper.de/)
 * Lade die Datei-Struktur 1:1 auf Deinen Webserver ins Shopverzeichnis. Es werden keine vorhandenen Dateien überschrieben
+* Das Verzeichnis `/multislider/uploads/` braucht rekusive Schreibrechte um Grafiken für den Slider uploaden zu können
 
 
 
