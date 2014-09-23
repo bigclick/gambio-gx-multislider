@@ -1,6 +1,6 @@
 <?php
 /* -------------------------------------------------------------------------------------
-* 	ID:						Id: slide_tpl.php
+* 	ID:						Id: class.slider.php
 * 	zuletzt geaendert von:	Author: danielsiekiera
 * 	Datum:					Date: 09.09.14 15:37
 *

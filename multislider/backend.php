@@ -1,7 +1,7 @@
 <?php
 /* -------------------------------------------------------------------------------------
-* 	ID:						            Id: multislider.php (BackEnd)
-* 	zuletzt geaendert von:	            Author: Daniel Siekiera
+* 	ID:						            Id: backend.php
+* 	zuletzt geaendert von:	            Author: danielsiekiera
 * 	Datum:					            Date: 09.09.14 12:30
 *
 * 	BigClick GmbH & Co.KG

@@ -20,6 +20,7 @@ Ein kleines Demo-Video findest Du hier: [Gambio Multislider v1.0](http://www.sta
 * Lade die Datei-Struktur 1:1 auf Deinen Webserver ins Shopverzeichnis. Es werden keine vorhandenen Dateien überschrieben
 * Das Verzeichnis `/multislider/uploads/` braucht rekusive Schreibrechte um Grafiken für den Slider uploaden zu können
 
+> *Für einen fehlerhaften Einbau übernehmen wir keine Haftung!!*
 
 
 **Integration:**
