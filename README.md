@@ -26,52 +26,6 @@ Ein kleines Demo-Video findest Du hier: [Gambio Multislider v1.0](http://www.sta
 **Integration:**
 -----------------
 
-*öffne:*
-
-gm_javascript.js.php
-
-
-*Suche:*
-
-`/* EOF StyleEdit */`
-
-*Füge danach ein:*
-
-```
-		if($_GET['page'] == 'Index'){
-			include_once DIR_FS_CATALOG.'multislider/js/js_include.php';
-		}
-```
-
-
-
-------------------------
-*öffne:*
-
-/system/classes/layout/IndexContentView.inc.php
-
-*Suche:*
-
-```
-		protected function load_center_modules()
-		{
-```
-
-*Füge direkt danach ein:*
-
-```
-		// Multislider
-		$_multislider = MainFactory::create_object('MultisliderMainContentView');
-	    $_multislider->set_('customers_fsk18_display', $_SESSION['customers_status']['customers_fsk18_display']);
-	    $_multislider->set_('customers_status_id', $_SESSION['customers_status']['customers_status_id']);
-	    $_multislider->set_('languages_id', $_SESSION['languages_id']);
-	    $_multislider_view = $_multislider->get_html();
-	    $this->set_content_data('MODULE_multislider', $_multislider_view);
-```
-
-
-
---------------------------
 
 *öffne*
 
