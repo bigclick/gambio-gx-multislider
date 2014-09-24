@@ -58,10 +58,11 @@ Changelog:
 ----------
 
 **24.09.2014** - v1.1.0
-	- Overload Klassen hinzugefügt *(Eingriffe in die Systemdateien sind nicht mehr notwendig)*
+- Overload Klassen hinzugefügt *(Eingriffe in die Systemdateien sind nicht mehr notwendig)*
+
 
 **22.09.2014** - v1.0.0
-	- erste Stabile Version
+- erste Stabile Version
 
 
 Bugs:
