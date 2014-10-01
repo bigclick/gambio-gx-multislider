@@ -18,7 +18,7 @@ Ein kleines Demo-Video findest Du hier: [Gambio Multislider](http://www.starguts
 
 * Führe die beiliegende SQL-Datei in einem geeignetem SQL-Programm aus. Bsp: [phpMyAdmin](http://www.phpmyadmin.net/home_page/index.php) oder [MySQLDumer](http://www.mysqldumper.de/)
 * Lade die Datei-Struktur 1:1 auf Deinen Webserver ins Shopverzeichnis. Es werden keine vorhandenen Dateien überschrieben
-* Die Verzeichnisse `/multislider/uploads/slider/big/` und `/multislider/uploads/slider/thumb/` brauchen rekusive Schreibrechte
+* Die Verzeichnisse `/multislider/uploads/slider/big/` und `/multislider/uploads/slider/thumb/` brauchen rekursive Schreibrechte
 
 > *Für einen fehlerhaften Einbau übernehmen wir keine Haftung!!*
 
