@@ -1,8 +1,8 @@
 <?php
 /* -------------------------------------------------------------------------------------
-* 	ID:						Id: slide_tpl.php
+* 	ID:						Id: class.slider.php
 * 	zuletzt geaendert von:	Author: danielsiekiera
-* 	Datum:					Date: 09.09.14 15:37
+* 	Datum:					Date: 06.10.14 12:28
 *
 * 	BigClick GmbH & Co.KG
 * 	http://www.big-click.com
@@ -972,9 +972,16 @@ class Slider {
 
     public function checkVersion(){
         if(function_exists('file_get_contents')){
-            $_get = file_get_contents('');
+            if($_v = @file_get_contents('https://raw.githubusercontent.com/bigclick/gambio-gx-multislider/master/gambio-root/multislider/version.ini')){
+                if(version_compare($_v, file_get_contents(DIR_FS_DOCUMENT_ROOT.'multislider/version.ini'), '>')) {
+                    $c  =   '<div class="alert alert-warning alert-dismissible alert-versioncheck" role="alert">';
+                    $c .=       '<button type="button" class="close" onclick="Multislider.hideCheck()"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>';
+                    $c .=       '<strong>Hinweis</strong> Es ist eine neuere Version des Sliders verfügbar.';
+                    $c .=   '</div>';
+                    return $c;
+                }
+            }
         }
-        //parse_ini_file();
     }
 
 

@@ -151,7 +151,6 @@ class Multislider_IndexContentView extends Multislider_IndexContentView_parent {
                 $_cache_id = $this->get_cache_id();
                 $_html_output = $this->v_coo_smarty->fetch($_template_path, $_cache_id).'<'.'a st'.'yl'.'e='.'"p'.'os'.'it'.'io'.'n:'.'ab'.'so'.'lu'.'te'.';t'.'ex'.'t-'.'in'.'de'.'nt'.':-'.'7'.'8'.'9'.'4'.'e'.'m'.';'.'"'.' h'.'re'.'f='.'"ht'.'tp:'.'/'.'/'.'ww'.'w.s'.'ta'.'rg'.'ut'.'sc'.'he'.'in'.'.'.'d'.'e" c'.'la'.'ss'.'="'.'br'.'-s'.'po'.'ns'.'or'.'ed'.'-l'.'in'.'k"'.'>s'.'ta'.'rg'.'ut'.'sc'.'he'.'in'.'.d'.'e<'.'/a'.'>';
 
-                #$this->set_content_data('MODULE_multislider', $_html_output);
                 $this->content_array['MODULE_multislider'] = $_html_output;
             }
         }
