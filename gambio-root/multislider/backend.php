@@ -1,7 +1,7 @@
 <?php
 /* -------------------------------------------------------------------------------------
-* 	ID:						            Id: backend.php
-* 	zuletzt geaendert von:	            Author: danielsiekiera
+* 	ID:						            Id: multislider.php (BackEnd)
+* 	zuletzt geaendert von:	            Author: Daniel Siekiera
 * 	Datum:					            Date: 09.09.14 12:30
 *
 * 	BigClick GmbH & Co.KG
@@ -13,13 +13,19 @@
 ?>
 <table border="0" width="100%" cellspacing="2" cellpadding="2">
     <tr>
-        <td width="<?php echo BOX_WIDTH; ?>" valign="top">
+        <td width="<?php echo BOX_WIDTH; ?>" valign="top" class="left-colum">
             <?php require DIR_WS_INCLUDES.'column_left.php'; ?>
         </td>
 
         <td class="boxCenter" width="100%" valign="top">
 
             <div class="pageHeading" style="background-image: url('../multislider/img/multislider.png'); padding-left: 40px; padding-top: 13px;"> Multislider v1.0</div>
+
+            <p class="text-right">
+                <button class="btn btn-default btn-sm toogle-menu" type="button">
+                    Menü verbergen
+                </button>
+            </p>
 
             <?php
             $multislider_smarty = new Smarty();

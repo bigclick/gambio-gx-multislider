@@ -1,6 +1,6 @@
 <?php
 /* -------------------------------------------------------------------------------------
-* 	ID:						Id: class.slider.php
+* 	ID:						Id: slide_tpl.php
 * 	zuletzt geaendert von:	Author: danielsiekiera
 * 	Datum:					Date: 09.09.14 15:37
 *
@@ -32,7 +32,7 @@ class Slider {
 
         $c .=               '<div class="col-sm-3">';
         $c .=                   '<strong>&Uuml;berblend Effekt</strong>
-                                    <select name="effect" class="form-control">
+                                    <select name="effect" class="form-control input-sm">
 
                                     <option value="none"'.($data['effect'] == 'none' ? ' selected=""' : '').'>No transition</option>
                                     <option value="random"'.(($data['effect'] == 'random' or $data['effect'] == '') ? ' selected=""' : '').'>Randomly selected transition</option>
@@ -118,7 +118,7 @@ class Slider {
 
         $c .=               '<div class="col-sm-3">';
         $c .=                   '<strong>Effektdauer</strong> <small><em>1000ms = 1s</em></small>';
-        $c .=                   '<div class="input-group">';
+        $c .=                   '<div class="input-group input-group-sm">';
         $c .=                       '<input type="number" min="0" step="10" class="form-control" name="duration" value="'.(!empty($data['duration']) ? $data['duration'] : '500').'">';
         $c .=                       '<span class="input-group-addon">ms</span>';
         $c .=                   '</div>';
@@ -128,7 +128,7 @@ class Slider {
         $c .=               '<div class="col-sm-3">';
 
         $c .=                   '<strong>Einblend-Effekt</strong>';
-        $c .=                   '<select name="easing" class="form-control">';
+        $c .=                   '<select name="easing" class="form-control input-sm">';
         $c .=                       '<option value="linear"'.(($data['easing'] == 'easing' or $data['easing'] == '') ? ' selected=""' : '').'>linear</option>';
         $c .=                       '<option value="swing"'.($data['easing'] == 'swing' ? ' selected=""' : '').'>swing</option>';
         $c .=                       '<option value="easeInQuad"'.($data['easing'] == 'easeInQuad' ? ' selected=""' : '').'>easeInQuad</option>';
@@ -167,7 +167,7 @@ class Slider {
 
         $c .=               '<div class="col-sm-3">';
         $c .=                   '<strong>Pause</strong> <small><em>1000ms = 1s</em></small>';
-        $c .=                   '<div class="input-group">';
+        $c .=                   '<div class="input-group input-group-sm">';
         $c .=                       '<input type="number" min="0" step="100" class="form-control" name="delay" value="'.(!empty($data['delay']) ? $data['delay'] : '4000').'">';
         $c .=                       '<span class="input-group-addon">ms</span>';
         $c .=                   '</div>';
@@ -179,10 +179,9 @@ class Slider {
         $c .=       '<li class="list-group-item">';
         $c .=           '<div class="row">';
         $c .=               '<div class="col-md-6">';
-        $c .=                   '<label class="btn btn-sm btn-primary label-upload">';
-        $c .=                       '<input type="file" class="form-control image-upload" data-type="slider" name="'.$_rand.'" id="'.$_rand.'">';
-        $c .=                       'Bild ausw&auml;hlen';
-        $c .=                   '</label>';
+
+        $c .=                   '<button class="btn btn-primary choose-image" type="button">Bild ausw&auml;hlen</button>';
+        $c .=                   '<input type="file" class="form-control image-upload" data-type="slider" name="'.$_rand.'" id="'.$_rand.'">';
 
         $c .=                   '<input type="hidden" name="background_image" value="'.$data['background_image'].'" class="hidden-'.$_rand.'">';
 
@@ -192,7 +191,7 @@ class Slider {
         $c .=               '</div>';
 
         $c .=               '<div class="col-md-6 col-link-holder">';
-        $c .=                   '<input type="text" class="form-control" name="layer_link" value="'.(!empty($data['layer_link']) ? urldecode(urldecode($data['layer_link'])) : '').'" placeholder="Link (optional)">';
+        $c .=                   '<input type="text" class="form-control input-sm" name="layer_link" value="'.(!empty($data['layer_link']) ? urldecode(urldecode($data['layer_link'])) : '').'" placeholder="Link (optional)">';
         $c .=                   '<select class="form-control mt10" name="layer_link_target" value="" style="width:234px">';
         $c .=                       '<option value="_self"'.($data['layer_link_target'] == '_self' or $_GET['action'] == 'new' ? ' selected=""' : '').'>zur selben Seite</option>';
         $c .=                       '<option value="_blank"'.($data['layer_link_target'] == '_blank' ? ' selected=""' : '').'>in neuer Seite &ouml;ffnen</option>';
@@ -205,11 +204,15 @@ class Slider {
 
         $c .=           '<div class="row">';
         $c .=               '<div class="col-md-12">';
-        $c .=                   '<div class="layer-img-preview '.$_rand.'" style="'.(!empty($data['background_image']) ? 'display:block' : 'display:none').'">';
 
+        $bg = '';
         if(!empty($data['background_image'])){
-            $c .=                   '<img src="../multislider/uploads/slider/big/'.$data['background_image'].'" class="img-responsive">';
+            $bg =               ' style="height:400px;background:url(\'../multislider/uploads/slider/big/'.$data['background_image'].'\')"';
         }
+
+        $c .=                   '<div class="layer-img-preview '.$_rand.'"'.$bg.'>';
+
+        $c .=                       $this->LayerPreview($data['layers']);
 
         $c .=                   '</div>';
         $c .=               '</div>';
@@ -218,8 +221,14 @@ class Slider {
         $c .=       '</li>';
 
         $c .=   '</ul>';
-
-        $c .=   $this->LayerTPL($data['layers']);
+        $c .=   '<div class="row">';
+        $c .=       '<div class="col-sm-7">';
+        $c .=           $this->LayerTPL($data['layers']);
+        $c .=       '</div>';
+        $c .=       '<div class="col-sm-5">';
+        $c .=           $this->TimeTPL($data['layers']);
+        $c .=       '</div>';
+        $c .=   '</div>';
 
         return $c;
     }
@@ -234,7 +243,6 @@ class Slider {
             foreach($data as $layer){
                 $c .=   $this->LayerTPLItem($_id, $layer);
             }
-
         }
 
         $c .=       '<li class="add-new-layer">';
@@ -266,7 +274,7 @@ class Slider {
 
         $c .=                       '<div class="col-sm-3">';
         $c .=                           '<strong>HTML-Typ</strong>';
-        $c .=                           '<select name="layer_tag" class="form-control">';
+        $c .=                           '<select name="layer_tag" class="form-control input-sm">';
         $c .=                               '<option value="h1"'.($data['layer_tag'] == 'h1' ? ' selected=""' : '').'>h1</option>';
         $c .=                               '<option value="h2"'.($data['layer_tag'] == 'h2' ? ' selected=""' : '').'>h2</option>';
         $c .=                               '<option value="h3"'.($data['layer_tag'] == 'h3' ? ' selected=""' : '').'>h3</option>';
@@ -279,12 +287,12 @@ class Slider {
 
         $c .=                       '<div class="col-sm-3">';
         $c .=                           '<strong>Wort/Satz</strong>';
-        $c .=                           '<input type="text" class="form-control" name="layer_text" value="'.(!empty($data['layer_text']) ? urldecode($data['layer_text']) : '').'">';
+        $c .=                           '<input type="text" class="form-control input-sm" name="layer_text" value="'.(!empty($data['layer_text']) ? urldecode($data['layer_text']) : '').'">';
         $c .=                       '</div>';
 
         $c .=                       '<div class="col-sm-3">';
         $c .=                           '<strong>Abstand von oben</strong>';
-        $c .=                           '<div class="input-group">';
+        $c .=                           '<div class="input-group input-group-sm">';
         $c .=                               '<input type="number" min="0" class="form-control" name="layer_top" value="'.(!empty($data['layer_top']) ? $data['layer_top'] : '').'">';
         $c .=                               '<span class="input-group-addon">px</span>';
         $c .=                           '</div>';
@@ -292,7 +300,7 @@ class Slider {
 
         $c .=                       '<div class="col-sm-3">';
         $c .=                           '<strong>Abstand von links</strong>';
-        $c .=                           '<div class="input-group">';
+        $c .=                           '<div class="input-group input-group-sm">';
         $c .=                               '<input type="number" min="0" class="form-control" name="layer_left" value="'.(!empty($data['layer_left']) ? $data['layer_left'] : '').'">';
         $c .=                               '<span class="input-group-addon">px</span>';
         $c .=                           '</div>';
@@ -304,7 +312,7 @@ class Slider {
 
         $c .=                       '<div class="col-sm-3">';
         $c .=                           '<strong>Abstand von unten</strong>';
-        $c .=                           '<div class="input-group">';
+        $c .=                           '<div class="input-group input-group-sm">';
         $c .=                               '<input type="number" min="0" class="form-control" name="layer_bottom" value="'.(!empty($data['layer_bottom']) ? $data['layer_bottom'] : '').'">';
         $c .=                               '<span class="input-group-addon">px</span>';
         $c .=                           '</div>';
@@ -312,7 +320,7 @@ class Slider {
 
         $c .=                       '<div class="col-sm-3">';
         $c .=                           '<strong>Abstand von rechts</strong>';
-        $c .=                           '<div class="input-group">';
+        $c .=                           '<div class="input-group input-group-sm">';
         $c .=                               '<input type="number" min="0" class="form-control" name="layer_right" value="'.(!empty($data['layer_right']) ? $data['layer_right'] : '').'">';
         $c .=                               '<span class="input-group-addon">px</span>';
         $c .=                           '</div>';
@@ -320,7 +328,7 @@ class Slider {
 
         $c .=                       '<div class="col-sm-3">';
         $c .=                           '<strong>Breite</strong>';
-        $c .=                           '<div class="input-group">';
+        $c .=                           '<div class="input-group input-group-sm">';
         $c .=                               '<input type="text" class="form-control" name="layer_width" value="'.(!empty($data['layer_width']) ? $data['layer_width'] : 'auto').'">';
         $c .=                               '<span class="input-group-addon">px</span>';
         $c .=                           '</div>';
@@ -328,7 +336,7 @@ class Slider {
 
         $c .=                       '<div class="col-sm-3">';
         $c .=                           '<strong>H&ouml;he</strong>';
-        $c .=                           '<div class="input-group">';
+        $c .=                           '<div class="input-group input-group-sm">';
         $c .=                               '<input type="text" class="form-control" name="layer_height" value="'.(!empty($data['layer_height']) ? $data['layer_height'] : 'auto').'">';
         $c .=                               '<span class="input-group-addon">px</span>';
         $c .=                           '</div>';
@@ -340,39 +348,55 @@ class Slider {
 
         $c .=                       '<div class="col-sm-3">';
         $c .=                           '<strong>Abstand nach innen</strong>';
-        $c .=                           '<div class="input-group">';
+        $c .=                           '<div class="input-group input-group-sm">';
         $c .=                               '<input type="text" class="form-control" name="layer_padding" value="'.(!empty($data['layer_padding']) ? $data['layer_padding'] : '').'">';
         $c .=                               '<span class="input-group-addon">px</span>';
         $c .=                           '</div>';
         $c .=                       '</div>';
 
         $c .=                       '<div class="col-sm-3">';
-        $c .=                           '<strong>Rand</strong> <small><em>Bsp: 1px solid #000</em></small>';
-        $c .=                           '<div class="input-group">';
+        $c .=                           '<strong>Rand</strong> <i class="fa fa-info" data-toggle="tooltip" data-placement="top" title="Bsp: 1px solid #000"></i>';
+        $c .=                           '<div class="input-group input-group-sm">';
         $c .=                               '<input type="text" class="form-control" name="layer_border" value="'.(!empty($data['layer_border']) ? urldecode($data['layer_border']) : '').'">';
         $c .=                               '<span class="input-group-addon">px</span>';
         $c .=                           '</div>';
         $c .=                       '</div>';
 
         $c .=                       '<div class="col-sm-3">';
-        $c .=                           '<strong>Textfarbe</strong> <small><em>Bsp: #555</em></small>';
-        $c .=                           '<input type="text" class="form-control" name="layer_color" value="'.(!empty($data['layer_color']) ? urldecode($data['layer_color']) : '').'">';
+        $c .=                           '<strong>Textfarbe</strong> <i class="fa fa-info" data-toggle="tooltip" data-placement="top" title="Bsp: #555"></i>';
+        $c .=                           '<input type="text" class="form-control input-sm" name="layer_color" value="'.(!empty($data['layer_color']) ? urldecode($data['layer_color']) : '').'">';
         $c .=                       '</div>';
 
         $c .=                       '<div class="col-sm-3">';
-        $c .=                           '<strong>Hintergrundfarbe</strong> <small><em>Bsp: #ddd</em></small>';
-        $c .=                           '<input type="text" class="form-control" name="layer_background_color" value="'.(!empty($data['layer_background_color']) ? urldecode($data['layer_background_color']) : '').'">';
+        $c .=                           '<strong>Hintergrundfarbe</strong> <i class="fa fa-info" data-toggle="tooltip" data-placement="top" title="Bsp: #ddd"></i>';
+        $c .=                           '<input type="text" class="form-control input-sm" name="layer_background_color" value="'.(!empty($data['layer_background_color']) ? urldecode($data['layer_background_color']) : '').'">';
+        $c .=                       '</div>';
+
+        $c .=                   '</div><br>';
+
+
+        $c .=                   '<div class="row">';
+
+        $c .=                       '<div class="col-sm-3">';
+        $c .=                           '<strong>Schriftgröße</strong>';
+        $c .=                           '<div class="input-group input-group-sm">';
+        $c .=                               '<input type="number" min="14" class="form-control" name="layer_font_size" value="'.(!empty($data['layer_font_size']) ? $data['layer_font_size'] : '18').'">';
+        $c .=                               '<span class="input-group-addon">px</span>';
+        $c .=                           '</div>';
         $c .=                       '</div>';
 
         $c .=                   '</div><br>';
 
         $c .=                   '<hr>';
 
+
         $c .=                   '<div class="row">';
 
+        $c .=                       '<div class="col-sm-12"><h5>Einblenden</h5></div>';
+
         $c .=                       '<div class="col-sm-3">';
-        $c .=                           '<strong>Einblend-Effekt</strong>';
-        $c .=                           '<select name="layer_effect" class="form-control">';
+        $c .=                           '<strong>Effekt</strong>';
+        $c .=                           '<select name="layer_effect" class="form-control input-sm">';
 
         $c .=                               '<option value="none"'.($data['layer_effect'] == 'none' ? ' selected=""' : '').'>none</option>';
         $c .=                               '<option value="fade"'.(($data['layer_effect'] == 'fade' or $data['layer_effect'] == '') ? ' selected=""' : '').'>fade</option>';
@@ -402,16 +426,16 @@ class Slider {
         $c .=                       '</div>';
 
         $c .=                       '<div class="col-sm-3">';
-        $c .=                           '<strong>Effektdauer</strong> <small><em>1000ms = 1s</em></small>';
-        $c .=                           '<div class="input-group">';
+        $c .=                           '<strong>Effektdauer</strong> <i class="fa fa-info" data-toggle="tooltip" data-placement="top" title="1000ms = 1s"></i>';
+        $c .=                           '<div class="input-group input-group-sm">';
         $c .=                               '<input type="number" min="0" step="10" class="form-control" name="layer_duration" value="'.(!empty($data['layer_duration']) ? $data['layer_duration'] : '500').'">';
         $c .=                               '<span class="input-group-addon">ms</span>';
         $c .=                           '</div>';
         $c .=                       '</div>';
 
         $c .=                       '<div class="col-sm-3">';
-        $c .=                           '<strong>Einblend-&Uuml;bergangs-Effekt</strong>';
-        $c .=                           '<select name="layer_easing" class="form-control">';
+        $c .=                           '<strong>&Uuml;bergangs-Effekt</strong>';
+        $c .=                           '<select name="layer_easing" class="form-control input-sm">';
         $c .=                               '<option value="linear"'.(($data['layer_easing'] == 'easing' or $data['layer_easing'] == '') ? ' selected=""' : '').'>linear</option>';
         $c .=                               '<option value="swing"'.($data['layer_easing'] == 'swing' ? ' selected=""' : '').'>swing</option>';
         $c .=                               '<option value="easeInQuad"'.($data['layer_easing'] == 'easeInQuad' ? ' selected=""' : '').'>easeInQuad</option>';
@@ -448,33 +472,24 @@ class Slider {
         $c .=                       '</div>';
 
         $c .=                       '<div class="col-sm-3">';
-        $c .=                           '<strong>Zeit bis zum Einblenden</strong> <small><em>1000ms = 1s</em></small>';
-        $c .=                           '<div class="input-group">';
+        $c .=                           '<strong>Startzeit</strong> <i class="fa fa-info" data-toggle="tooltip" data-placement="top" title="Zeit bis zum Einblenden<br><em>1000ms = 1s</em>"></i>';
+        $c .=                           '<div class="input-group input-group-sm">';
         $c .=                               '<input type="number" min="0" step="100" class="form-control" name="layer_delay" value="'.(!empty($data['layer_delay']) ? $data['layer_delay'] : '1000').'">';
         $c .=                               '<span class="input-group-addon">ms</span>';
         $c .=                           '</div>';
         $c .=                       '</div>';
 
-        $c .=                   '</div><br>';
+        $c .=                   '</div>';
+
+        $c .=                   '<hr>';
 
         $c .=                   '<div class="row">';
 
-        $c .=                       '<div class="col-sm-3">';
-        $c .=                           '<strong>Schriftgröße</strong>';
-        $c .=                           '<div class="input-group">';
-        $c .=                               '<input type="number" min="14" class="form-control" name="layer_font_size" value="'.(!empty($data['layer_font_size']) ? $data['layer_font_size'] : '18').'">';
-        $c .=                               '<span class="input-group-addon">px</span>';
-        $c .=                           '</div>';
-        $c .=                       '</div>';
-
-        $c .=                   '</div><br>';
-
-
-        $c .=                   '<div class="row">';
+        $c .=                       '<div class="col-sm-12"><h5>Ausblenden</h5></div>';
 
         $c .=                       '<div class="col-sm-3">';
-        $c .=                           '<strong>Ausblend-Effekt</strong>';
-        $c .=                           '<select name="layer_effect_out" class="form-control">';
+        $c .=                           '<strong>Effekt</strong>';
+        $c .=                           '<select name="layer_effect_out" class="form-control input-sm">';
 
         $c .=                               '<option value="none"'.($data['layer_effect_out'] == 'none' ? ' selected=""' : '').'>none</option>';
         $c .=                               '<option value="fade"'.(($data['layer_effect_out'] == 'fade' or $data['layer_effect_out'] == '') ? ' selected=""' : '').'>fade</option>';
@@ -504,16 +519,16 @@ class Slider {
         $c .=                       '</div>';
 
         $c .=                       '<div class="col-sm-3">';
-        $c .=                           '<strong>Effektdauer</strong> <small><em>1000ms = 1s</em></small>';
-        $c .=                           '<div class="input-group">';
+        $c .=                           '<strong>Effektdauer</strong> <i class="fa fa-info" data-toggle="tooltip" data-placement="top" title="1000ms = 1s"></i>';
+        $c .=                           '<div class="input-group input-group-sm">';
         $c .=                               '<input type="number" min="0" step="10" class="form-control" name="layer_duration_out" value="'.(!empty($data['layer_duration_out']) ? $data['layer_duration_out'] : '500').'">';
         $c .=                               '<span class="input-group-addon">ms</span>';
         $c .=                           '</div>';
         $c .=                       '</div>';
 
         $c .=                       '<div class="col-sm-3">';
-        $c .=                           '<strong>Ausblend-&Uuml;bergangs-Effekt</strong>';
-        $c .=                           '<select name="layer_easing_out" class="form-control">';
+        $c .=                           '<strong>&Uuml;bergangs-Effekt</strong>';
+        $c .=                           '<select name="layer_easing_out" class="form-control input-sm">';
         $c .=                               '<option value="linear"'.(($data['layer_easing_out'] == 'easing' or $data['layer_easing_out'] == '') ? ' selected=""' : '').'>linear</option>';
         $c .=                               '<option value="swing"'.($data['layer_easing_out'] == 'swing' ? ' selected=""' : '').'>swing</option>';
         $c .=                               '<option value="easeInQuad"'.($data['layer_easing_out'] == 'easeInQuad' ? ' selected=""' : '').'>easeInQuad</option>';
@@ -550,8 +565,8 @@ class Slider {
         $c .=                       '</div>';
 
         $c .=                       '<div class="col-sm-3">';
-        $c .=                           '<strong>Zeit bis zum Ausblenden</strong> <small><em>1000ms = 1s</em></small>';
-        $c .=                           '<div class="input-group">';
+        $c .=                           '<strong>Endzeit</strong> <i class="fa fa-info" data-toggle="tooltip" data-placement="top" title="Zeit bis zum Ausblenden<br><em>1000ms = 1s</em>"></i>';
+        $c .=                           '<div class="input-group input-group-sm">';
         $c .=                               '<input type="number" min="0" step="100" class="form-control" name="layer_delay_out" value="'.(!empty($data['layer_delay_out']) ? $data['layer_delay_out'] : '1000').'">';
         $c .=                               '<span class="input-group-addon">ms</span>';
         $c .=                           '</div>';
@@ -564,6 +579,99 @@ class Slider {
         $c .=       '</li>';
 
         return $c;
+    }
+
+
+    protected function TimeTPL($data = array()){
+        $_id = $this->getRandomId(3);
+
+        $c  =   '<ul class="layer-timer" id="'.$_id.'">';
+
+        if(!empty($data)){
+            foreach($data as $layer){
+                $c .= $this->TimerTPLItem();
+            }
+        }
+
+        $c .=   '</ul>';
+
+        return $c;
+    }
+
+
+    public function TimerTPLItem($start = '', $end = ''){
+        $_id = $this->getRandomId(5);
+
+        $c  =   '<li class="timer-'.$_id.'">';
+        $c .=       '<input class="layer-start" name="layer-start" type="number" value="'.$start.'">';
+        $c .=       '<input class="layer-end" name="layer-end" type="number" value="'.$end.'">';
+        $c .=       '<div class="timer-holder"><div class="layer-time"></div></div>';
+        $c .=   '</li>';
+
+        return $c;
+    }
+
+
+    protected function LayerPreview($datas = array()){
+        if(is_array($datas)){
+
+            $c = '';
+
+            foreach($datas as $data){
+
+                $_style = array();
+
+                if(!empty($data['layer_top'])){
+                    $_style[] = 'top:'.$data['layer_top'].'px';
+                }
+
+                if(!empty($data['layer_left'])){
+                    $_style[] = 'left:'.$data['layer_left'].'px';
+                }
+
+                if(!empty($data['layer_bottom']) && empty($data['layer_top'])){
+                    $_style[] = 'bottom:'.$data['layer_bottom'].'px';
+                }
+
+                if(!empty($data['layer_right']) && empty($data['layer_left'])){
+                    $_style[] = 'right:'.$data['layer_right'].'px';
+                }
+
+                if(!empty($data['layer_width'])){
+                    $_style[] = 'width:'.(is_numeric($data['layer_width']) ? $data['layer_width'].'px' : $data['layer_width']);
+                }
+
+                if(!empty($data['layer_height'])){
+                    $_style[] = 'height:'.(is_numeric($data['layer_height']) ? $data['layer_height'].'px' : $data['layer_height']);
+                }
+
+                if(!empty($data['layer_padding'])){
+                    $_style[] = 'padding:'.$data['layer_padding'].'px';
+                }
+
+                if(!empty($data['layer_border'])){
+                    $_style[] = 'border:'.urldecode($data['layer_border']);
+                }
+
+                if(!empty($data['layer_color'])){
+                    $_style[] = 'color:'.urldecode($data['layer_color']);
+                }
+
+                if(!empty($data['layer_background_color'])){
+                    $_style[] = 'background-color:'.urldecode($data['layer_background_color']);
+                }
+
+                if(!empty($data['layer_font_size'])){
+                    $_style[] = 'font-size:'.$data['layer_font_size'].'px';
+                }
+
+                $c .=   '<'.$data['layer_tag'].' style="'.implode(';', $_style).'">';
+                $c .=       urldecode($data['layer_text']);
+                $c .=   '</'.$data['layer_tag'].'>';
+            }
+
+            return $c;
+        }
     }
 
 
@@ -650,7 +758,7 @@ class Slider {
         } else {
             $_error = true;
             $_msg = $this->showNotice('Bitte vergebe dem Slider einen eindeutigen Namen', 'danger');
-            $_js = "$('.slider-form > h3').addClass('danger-bg')";
+            $_js = "$('.slider-h3').addClass('danger-bg')";
         }
 
 
@@ -846,7 +954,7 @@ class Slider {
     }
 
 
-    protected function getRandomId($l, $c = 'abcdefghijklmnopqrstuvwxyz1234567890'){
+    public function getRandomId($l, $c = 'abcdefghijklmnopqrstuvwxyz1234567890'){
         for ($s = '', $cl = strlen($c)-1, $i = 0; $i < $l; $s .= $c[mt_rand(0, $cl)], ++$i);
         return $s;
     }
@@ -859,6 +967,14 @@ class Slider {
         $a .=   '</div>';
 
         return $a;
+    }
+
+
+    public function checkVersion(){
+        if(function_exists('file_get_contents')){
+            $_get = file_get_contents('');
+        }
+        //parse_ini_file();
     }
 
 

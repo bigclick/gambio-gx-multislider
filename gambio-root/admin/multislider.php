@@ -11,8 +11,10 @@
 * ----------------------------------------------------------------------------------- */
 
 require 'includes/application_top.php';
+include DIR_FS_DOCUMENT_ROOT.'multislider/action.php';
+
 ?>
-<!doctype html public "-//W3C//DTD HTML 4.01 Transitional//EN">
+<!doctype html>
 <html <?php echo HTML_PARAMS; ?>>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=<?php echo $_SESSION['language_charset']; ?>">
@@ -41,9 +43,11 @@ require 'includes/application_top.php';
     include DIR_WS_INCLUDES.'header.php';
 ?>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+<script src="../multislider/js/jquery-ui.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.min.js"></script>
 <script>var site_url = '<?php echo xtc_catalog_href_link('multislider/a.php'); ?>';</script>
 <script src="../multislider/js/ajaxfileupload.js"></script>
-<script src="../multislider/js/backend.js"></script>
+<script src="../multislider/js/backend-org.js"></script>
 <?php
     include DIR_FS_DOCUMENT_ROOT.'multislider/backend.php';
     include DIR_WS_INCLUDES.'footer.php';

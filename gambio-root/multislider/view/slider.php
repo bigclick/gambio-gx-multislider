@@ -17,8 +17,10 @@ $_tpl = new Slider();
 // der aller erste Slider wird geladen
 if(isset($_GET['action']) && $_GET['action'] == 'new'){
 
-    $multislider_smarty->assign('slider_tpl', '<div class="tab-pane fade in active">'.$_tpl->loadTPL().'</div>');
-    $multislider_smarty->assign('slider_li', '<li class="active"><a href="#">Slide #1</a></li>');
+    $_pid = $_tpl->getRandomId(5);
+
+    $multislider_smarty->assign('slider_tpl', '<div class="tab-pane fade in active slider-'.$_pid.'" data-id="'.$_pid.'">'.$_tpl->loadTPL().'</div>');
+    $multislider_smarty->assign('slider_li', '<li class="active"><a href="#">Slide 1</a></li>');
 
     // die nächste Nummer holen
     $_next = xtc_db_fetch_array(xtc_db_query("SHOW TABLE STATUS WHERE Name = 'multislider'"));
@@ -43,9 +45,10 @@ if(isset($_GET['action']) && $_GET['action'] == 'new'){
 
     foreach($_data as $_d){
 
-        $_ul_li .= '<li class="'.($_cnt == 1 ? 'active' : '').'"><a href="#">Slide #'.$_cnt.'</a>'.($_cnt > 1 ? '<span class="fa fa-times-circle delete-slide"></span>' : '').'</li>';
+        $_ul_li .= '<li class="'.($_cnt == 1 ? 'active' : '').'"><a href="#">Slide '.$_cnt.'</a>'.($_cnt > 1 ? '<span class="fa fa-times-circle delete-slide"></span>' : '').'</li>';
 
-        $_tab_pane .= '<div class="tab-pane fade in'.($_cnt == 1 ? ' active' : '').'">'.$_tpl->loadTPL($_d).'</div>';
+        $_pid = $_tpl->getRandomId(5);
+        $_tab_pane .= '<div class="tab-pane fade in'.($_cnt == 1 ? ' active' : '').' slider-'.$_pid.'" data-id="'.$_pid.'">'.$_tpl->loadTPL($_d).'</div>';
 
         $_cnt++;
     }

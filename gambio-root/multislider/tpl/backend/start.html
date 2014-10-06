@@ -14,7 +14,6 @@
     <table class="table table-bordered table-striped">
         <thead>
             <tr>
-                <th></th>
                 <th>#</th>
                 <th>Name</th>
                 <th>hinzugef&uuml;gt</th>
@@ -24,19 +23,21 @@
         <tbody>
             {foreach item=s from=$sliders}
             <tr>
-                <td style="width: 1px;">
-                    <input type="radio" name="active_slider" value="{$s.id}"{if $s.status == 1} checked=""{/if}>
-                </td>
                 <td>{$s.id}</td>
                 <td>{$s.name}</td>
                 <td>{$s.date}</td>
                 <td class="text-right">
-                    <a class="btn btn-danger" href="{$s.delete_link}">
-                        <i class="fa fa-trash-o"></i>
-                    </a>
-                    <a class="btn btn-primary" href="{$s.edit_link}">
-                        <i class="fa fa-wrench"></i>
-                    </a>
+                    <div class="btn-group">
+                        <a data-toggle="tooltip" data-placement="top" title="Status ändern" class="btn btn-sm {if $s.status == 1}btn-success{else}btn-warning{/if}" href="{$s.status_link}">
+                            <i class="fa fa-eye"></i>
+                        </a>
+                        <a data-toggle="tooltip" data-placement="top" title="Slider löschen" class="btn btn-sm btn-danger" href="{$s.delete_link}">
+                            <i class="fa fa-trash-o"></i>
+                        </a>
+                        <a data-toggle="tooltip" data-placement="top" title="Slider und Layer bearbeiten" class="btn btn-sm btn-primary" href="{$s.edit_link}">
+                            <i class="fa fa-wrench"></i>
+                        </a>
+                    </div>
                 </td>
             </tr>
             {foreachelse}
