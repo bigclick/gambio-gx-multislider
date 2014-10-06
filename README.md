@@ -23,7 +23,7 @@ Fertig!
 
 ### Neuinstallation
 
-* Führe die beiliegende SQL-Datei in einem geeignetem SQL-Programm aus. Bsp: [phpMyAdmin](http://www.phpmyadmin.net/home_page/index.php) oder [MySQLDumer](http://www.mysqldumper.de/)
+* Führe die beiliegende SQL-Datei *(multislider.sql)* in einem geeignetem SQL-Programm aus. Bsp: [phpMyAdmin](http://www.phpmyadmin.net/home_page/index.php) oder [MySQLDumer](http://www.mysqldumper.de/). Der Inhalt der SQL-Datei kann auch im Adminbereich über den Menüpunkt "Toolbox > SQL" eingespielt werden.
 
 * Lade die Datei-Struktur des Ordners `/gambio-root/` 1:1 auf Deinen Webserver ins Shopverzeichnis. Es werden keine vorhandenen Dateien überschrieben
 * Die Verzeichnisse `/multislider/uploads/slider/big/` und `/multislider/uploads/slider/thumb/` brauchen rekursive Schreibrechte
