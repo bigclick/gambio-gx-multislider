@@ -973,10 +973,13 @@ class Slider {
     public function checkVersion(){
         if(function_exists('file_get_contents')){
             if($_v = @file_get_contents('https://raw.githubusercontent.com/bigclick/gambio-gx-multislider/master/gambio-root/multislider/version.ini')){
-                if(version_compare($_v, file_get_contents(DIR_FS_DOCUMENT_ROOT.'multislider/version.ini'), '>')) {
+                $_ov = file_get_contents(DIR_FS_DOCUMENT_ROOT.'multislider/version.ini');
+                if(version_compare($_v, $_ov, '>')) {
                     $c  =   '<div class="alert alert-warning alert-dismissible alert-versioncheck" role="alert">';
                     $c .=       '<button type="button" class="close" onclick="Multislider.hideCheck()"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>';
-                    $c .=       '<strong>Hinweis</strong> Es ist eine neuere Version des Sliders verfügbar.';
+                    $c .=       '<h4>Es ist eine neuere Version des MultiSliders verfügbar.</h4>';
+                    $c .=       'Ihre Version ist die <code>v'.$_ov.'</code> und die Verfügbare Version <code>v'.$_v.'</code>.<br>';
+                    $c .=       'Hier geht es zum <a class="btn btn-default btn-sm" href="https://github.com/bigclick/gambio-gx-multislider/archive/master.zip" target="_blank">Download</a> und hier zur <a class="btn btn-default btn-sm" href="https://github.com/bigclick/gambio-gx-multislider#changelog" target="_blank">Changelog</a>.';
                     $c .=   '</div>';
                     return $c;
                 }
