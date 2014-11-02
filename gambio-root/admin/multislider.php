@@ -45,7 +45,7 @@ include DIR_FS_DOCUMENT_ROOT.'multislider/action.php';
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
 <script src="../multislider/js/jquery-ui.min.js"></script>
 <script src="//cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.min.js"></script>
-<script>var site_url = '<?php echo xtc_catalog_href_link('multislider/a.php'); ?>';</script>
+<script>var site_url = '<?php echo xtc_href_link('multislider.php'); ?>';</script>
 <script src="../multislider/js/ajaxfileupload.js"></script>
 <script src="../multislider/js/backend.js"></script>
 <?php

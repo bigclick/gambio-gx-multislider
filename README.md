@@ -1,4 +1,4 @@
-#gambio-gx-multislider v1.1.0
+#gambio-gx-multislider v1.2.1
 
 Multislider für Gambio v2.1.x.x mit Text-Layern - kostenlos!
 
@@ -63,6 +63,11 @@ Dazu bitte einfach im Menüpunkt "Toolbox" im Admin-Bereich den Link "Cache leer
 
 Changelog:
 ----------
+
+**02.11.2014** - v1.2.1
+- Ajax Aufruf umgestellt *("Eieruhr" beim Speichern)*
+
+
 **06.10.2014** - v1.2.0
 - Overload Überlagerung entfernt *(alle Bestandteile der Startseite werden angezeigt)*
 - verbesserter Ajaxupload *(mit größerer Bildvorschau)*
