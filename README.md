@@ -64,6 +64,9 @@ Dazu bitte einfach im Menüpunkt "Toolbox" im Admin-Bereich den Link "Cache leer
 Changelog:
 ----------
 
+**06.02.2015** - v1.2.2
+- kleiner Bugfix
+
 **02.11.2014** - v1.2.1
 - Ajax Aufruf umgestellt *("Eieruhr" beim Speichern)*
 
