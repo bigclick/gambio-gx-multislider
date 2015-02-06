@@ -1,4 +1,4 @@
-#gambio-gx-multislider v1.2.1
+#gambio-gx-multislider v1.2.2
 
 Multislider für Gambio v2.1.x.x mit Text-Layern - kostenlos!
 
