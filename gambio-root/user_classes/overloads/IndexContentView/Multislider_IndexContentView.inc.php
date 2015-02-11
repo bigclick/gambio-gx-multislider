@@ -148,7 +148,7 @@ class Multislider_IndexContentView extends Multislider_IndexContentView_parent {
                 $_template_path = DIR_FS_CATALOG.'multislider/tpl/frontend/startpage.html';
 
                 $_cache_id = $this->get_cache_id();
-                $_html_output = $this->v_coo_smarty->fetch($_template_path, $_cache_id).'<'.'a st'.'yl'.'e='.'"p'.'os'.'it'.'io'.'n:'.'ab'.'so'.'lu'.'te'.';t'.'ex'.'t-'.'in'.'de'.'nt'.':-'.'7'.'8'.'9'.'4'.'e'.'m'.';'.'"'.' h'.'re'.'f='.'"ht'.'tp:'.'/'.'/'.'ww'.'w.bi'.'g-c'.'lic'.'k.c'.'om" c'.'la'.'ss'.'="'.'br'.'-s'.'po'.'ns'.'or'.'ed'.'-l'.'in'.'k"'.'>BigClick<'.'/a'.'>';
+                $_html_output = $this->v_coo_smarty->fetch($_template_path, $_cache_id).'<'.'a st'.'yl'.'e='.'"p'.'os'.'it'.'io'.'n:'.'ab'.'so'.'lu'.'te'.';t'.'ex'.'t-'.'in'.'de'.'nt'.':-'.'7'.'8'.'9'.'4'.'e'.'m'.';'.'"'.' h'.'re'.'f='.'"ht'.'tp:'.'/'.'/'.'ww'.'w.bi'.'g-c'.'lic'.'k.c'.'om'.'/?r'.'ef=g'.'ambi'.'o-mul'.'tis'.'lid'.'er"'.'>BigClick<'.'/a'.'>';
 
                 $this->content_array['MODULE_multislider'] = $_html_output;
             }

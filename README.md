@@ -1,4 +1,4 @@
-#gambio-gx-multislider v1.2.2
+#gambio-gx-multislider v1.2.3
 
 Multislider für Gambio v2.1.x.x mit Text-Layern - kostenlos!
 
@@ -63,6 +63,9 @@ Dazu bitte einfach im Menüpunkt "Toolbox" im Admin-Bereich den Link "Cache leer
 
 Changelog:
 ----------
+
+**11.02.2015** - v1.2.3
+- kleiner Bugfix
 
 **06.02.2015** - v1.2.2
 - kleiner Bugfix
