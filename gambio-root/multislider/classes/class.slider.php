@@ -595,7 +595,7 @@ class Slider {
 
         $c .=   '</ul>';
 
-        return $c;
+        #return $c;
     }
 
 
@@ -608,7 +608,7 @@ class Slider {
         $c .=       '<div class="timer-holder"><div class="layer-time"></div></div>';
         $c .=   '</li>';
 
-        return $c;
+        # return $c;
     }
 
 

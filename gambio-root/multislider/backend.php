@@ -18,8 +18,10 @@
         </td>
 
         <td class="boxCenter" width="100%" valign="top">
-
-            <div class="pageHeading" style="background-image: url('../multislider/img/multislider.png'); padding-left: 40px; padding-top: 13px;"> Multislider v1.0</div>
+            <?php
+                $_version = file_get_contents(DIR_FS_DOCUMENT_ROOT.'multislider/version.ini');
+            ?>
+            <div class="pageHeading" style="background-image: url('../multislider/img/multislider.png'); padding-left: 40px; padding-top: 13px;"> Multislider v<?php echo $_version; ?></div>
 
             <p class="text-right">
                 <button class="btn btn-default btn-sm toogle-menu" type="button">
@@ -35,7 +37,7 @@
 
             include DIR_FS_DOCUMENT_ROOT.'multislider/view/'.$_view.'.php';
 
-            echo $multislider_smarty->fetch(DIR_FS_CATALOG.'multislider/tpl/backend/'.$_view.'.html');
+            echo $multislider_smarty->fetch(DIR_FS_CATALOG.'multislider/tpl/backend/'.$_view.'.tpl');
             ?>
         </td>
     </tr>

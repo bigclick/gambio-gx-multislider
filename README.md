@@ -1,6 +1,6 @@
-#gambio-gx-multislider v1.2.5
+#Gambio GX Multislider v1.2.6
 
-Multislider für Gambio v2.1.x.x mit Text-Layern - kostenlos!
+Multislider / Startseiten - Slider für Gambio GX v2.3.x.x mit Text-Layern - kostenlos!
 
 Ein kleines Demo-Video findest Du hier: [Gambio Multislider](http://www.stargutschein.de/content/gambio-gx2-slider-modul.html)
 
@@ -14,6 +14,7 @@ Ein kleines Demo-Video findest Du hier: [Gambio Multislider](http://www.starguts
 
 
 ### Update
+
 Der Multisilder ist bereits installiert? Dann braucht nur der Inhalt des Ordners `/gambio-root/` **ohne** den Ordner `/gambio-root/multislider/uploads/` auf den Server geladen werden. Nun noch den Cache vom Shop leeren.
 
 Fertig!
@@ -63,6 +64,9 @@ Dazu bitte einfach im Menüpunkt "Toolbox" im Admin-Bereich den Link "Cache leer
 
 Changelog:
 ----------
+**30.06.2015** - v1.2.6
+- Javascript Kollision behoben
+- Cookies gegen Local-Storage getauscht
 
 **11.02.2015** - v1.2.3
 - kleiner Bugfix
@@ -88,7 +92,7 @@ Changelog:
 
 
 **22.09.2014** - v1.0.0
-- erste Stabile Version
+- erste stabile Version
 
 
 Bugs:
