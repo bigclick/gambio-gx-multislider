@@ -1,4 +1,4 @@
-#Gambio GX Multislider v1.2.6
+#Gambio GX Multislider v1.3.0
 
 Multislider / Startseiten - Slider für Gambio GX v2.3.x.x mit Text-Layern - kostenlos!
 
@@ -64,6 +64,11 @@ Dazu bitte einfach im Menüpunkt "Toolbox" im Admin-Bereich den Link "Cache leer
 
 Changelog:
 ----------
+**01.07.2015** - v1.3.0
+- verbessertes Bearbeiten von Text-Layern (Echtzeitvorschau, SnapTo, Hilfslinien, Drag&Drop, usw.)
+- Struktur verbessert
+- Image-Alt Tag ergänzt
+
 **30.06.2015** - v1.2.6
 - Javascript Kollision behoben
 - Cookies gegen Local-Storage getauscht

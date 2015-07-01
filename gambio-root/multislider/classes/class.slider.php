@@ -10,7 +10,38 @@
 * 	Copyright (c) 2014 BigClick GmbH & Co.KG
 * ----------------------------------------------------------------------------------- */
 
+
 class Slider {
+
+    protected $_font_array = array(
+        array(
+            'Sans-Serif Fonts' => array(
+                '' => "Template Schriftart",
+                'arial-helvetica' => "Arial, Helvetica, sans-serif",
+                'arial-black' => "'Arial Black', Gadget, sans-serif",
+                'comic-sans' => "'Comic Sans MS', cursive, sans-serif",
+                'impact' => "Impact, Charcoal, sans-serif",
+                'lucida' => "'Lucida Sans Unicode', 'Lucida Grande', sans-serif",
+                'tahoma' => "Tahoma, Geneva, sans-serif",
+                'trebuchet' => "'Trebuchet MS', Helvetica, sans-serif",
+                'verdana' => "Verdana, Geneva, sans-serif",
+            )
+        ),
+        array(
+            'Serif Fonts' => array(
+                'georgia' => "Georgia, serif",
+                'palatino' => "'Palatino Linotype', 'Book Antiqua', Palatino, serif",
+                'times' => "'Times New Roman', Times, serif",
+            )
+        ),
+        array(
+            'Monospace Fonts' => array(
+                'courier' => "'Courier New', Courier, monospace",
+                'lucida-console' => "'Lucida Console', Monaco, monospace",
+            )
+        ),
+
+    );
 
 
     public function loadTPL($data = array()){
@@ -178,7 +209,7 @@ class Slider {
 
         $c .=       '<li class="list-group-item">';
         $c .=           '<div class="row">';
-        $c .=               '<div class="col-md-6">';
+        $c .=               '<div class="col-md-5">';
 
         $c .=                   '<button class="btn btn-primary choose-image" type="button">Bild ausw&auml;hlen</button>';
         $c .=                   '<input type="file" class="form-control image-upload" data-type="slider" name="'.$_rand.'" id="'.$_rand.'">';
@@ -186,18 +217,25 @@ class Slider {
         $c .=                   '<input type="hidden" name="background_image" value="'.$data['background_image'].'" class="hidden-'.$_rand.'">';
 
         if(!empty($data['background_image'])){
-            $c .=               '<br>Name: <em>'.$data['background_image'].'</em><br>';
+            $c .=               '<br><br><span class="text-muted">Name: <em>'.$data['background_image'].'</em></span><br>';
         }
         $c .=               '</div>';
 
-        $c .=               '<div class="col-md-6 col-link-holder">';
-        $c .=                   '<input type="text" class="form-control input-sm" name="layer_link" value="'.(!empty($data['layer_link']) ? urldecode(urldecode($data['layer_link'])) : '').'" placeholder="Link (optional)">';
-        $c .=                   '<select class="form-control mt10" name="layer_link_target" value="" style="width:234px">';
-        $c .=                       '<option value="_self"'.($data['layer_link_target'] == '_self' or $_GET['action'] == 'new' ? ' selected=""' : '').'>zur selben Seite</option>';
-        $c .=                       '<option value="_blank"'.($data['layer_link_target'] == '_blank' ? ' selected=""' : '').'>in neuer Seite &ouml;ffnen</option>';
-        $c .=                       '<option value="_parent"'.($data['layer_link_target'] == '_parent' ? ' selected=""' : '').'>&ouml;ffnen im &uuml;bergeordnetem Frame</option>';
-        $c .=                       '<option value="_top"'.($data['layer_link_target'] == '_top' ? ' selected=""' : '').'>&ouml;ffnen im Hauptframe</option>';
-        $c .=                   '</select>';
+        $c .=               '<div class="col-md-7 col-link-holder">';
+        $c .=                   '<div class="input-group">';
+        $c .=                       '<input type="text" class="form-control input-sm" name="layer_link" value="'.(!empty($data['layer_link']) ? urldecode(urldecode($data['layer_link'])) : '').'" placeholder="Link (optional)"><br>';
+        $c .=                       '<div class="input-group-btn">';
+        $c .=                           '<select class="form-control input-sm" name="layer_link_target" style="width:234px">';
+        $c .=                               '<option value="_self"'.($data['layer_link_target'] == '_self' or $_GET['action'] == 'new' ? ' selected=""' : '').'>zur selben Seite</option>';
+        $c .=                               '<option value="_blank"'.($data['layer_link_target'] == '_blank' ? ' selected=""' : '').'>in neuer Seite &ouml;ffnen</option>';
+        $c .=                               '<option value="_parent"'.($data['layer_link_target'] == '_parent' ? ' selected=""' : '').'>&ouml;ffnen im &uuml;bergeordnetem Frame</option>';
+        $c .=                               '<option value="_top"'.($data['layer_link_target'] == '_top' ? ' selected=""' : '').'>&ouml;ffnen im Hauptframe</option>';
+        $c .=                           '</select>';
+        $c .=                       '</div>';
+        $c .=                   '</div><br>';
+
+        $c .=                   '<input type="text" class="form-control input-sm" name="layer_image_alt" value="'.(!empty($data['layer_image_alt']) ? urldecode(urldecode($data['layer_image_alt'])) : '').'" placeholder="Bild Alt-Text (optional)"><br>';
+
         $c .=               '</div>';
 
         $c .=           '</div><br>';
@@ -211,11 +249,15 @@ class Slider {
         }
 
         $c .=                   '<div class="layer-img-preview '.$_rand.'"'.$bg.'>';
+        $c .=                       '<span class="helper-grid"></span>';
+        $c .=                       '<div id="guide-h" class="guide"></div>';
+        $c .=                       '<div id="guide-v" class="guide"></div>';
 
         $c .=                       $this->LayerPreview($data['layers']);
 
         $c .=                   '</div>';
         $c .=               '</div>';
+
         $c .=           '</div><br>';
 
         $c .=       '</li>';
@@ -241,7 +283,8 @@ class Slider {
 
         if(!empty($data)){
             foreach($data as $layer){
-                $c .=   $this->LayerTPLItem($_id, $layer);
+                $_code = $this->LayerTPLItem($_id, $layer);
+                $c .= $_code['html'];
             }
         }
 
@@ -256,7 +299,7 @@ class Slider {
 
     public function LayerTPLItem($pid, $data = array()){
 
-        $_id_p = $this->getRandomId(5);
+        $_id_p = empty($data['layer_id']) ? $this->getRandomId(5) : $data['layer_id'];
 
         $c  =       '<li class="panel panel-default">';
         $c .=           '<div class="panel-heading">';
@@ -265,12 +308,18 @@ class Slider {
         $c .=                   '<a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#'.$pid.'" href="#'.$_id_p.'">';
         $c .=                       '<span>Layer</span>';
         $c .=                   '</a>';
-        $c .=                   '<i class="fa fa-times-circle delete-layer"></i>';
+        $c .=                   '<i class="fa fa-times-circle delete-layer" data-id="'.$_id_p.'"></i>';
         $c .=               '</h4>';
         $c .=           '</div> ';
         $c .=           '<div id="'.$_id_p.'" class="panel-collapse collapse">';
+        $c .=               '<input type="hidden" name="layer_id" value="'.$_id_p.'">';
         $c .=               '<div class="panel-body">';
         $c .=                   '<div class="row">';
+
+        $c .=                       '<div class="col-sm-6">';
+        $c .=                           '<strong>Wort/Satz</strong>';
+        $c .=                           '<input type="text" data-id="'.$_id_p.'" class="form-control input-sm change-layertext" name="layer_text" value="'.(!empty($data['layer_text']) ? urldecode($data['layer_text']) : '').'">';
+        $c .=                       '</div>';
 
         $c .=                       '<div class="col-sm-3">';
         $c .=                           '<strong>HTML-Typ</strong>';
@@ -285,10 +334,9 @@ class Slider {
         $c .=                           '</select>';
         $c .=                       '</div>';
 
-        $c .=                       '<div class="col-sm-3">';
-        $c .=                           '<strong>Wort/Satz</strong>';
-        $c .=                           '<input type="text" class="form-control input-sm" name="layer_text" value="'.(!empty($data['layer_text']) ? urldecode($data['layer_text']) : '').'">';
-        $c .=                       '</div>';
+        $c .=                   '</div>';
+
+        $c .=                   '<div class="row mt10">';
 
         $c .=                       '<div class="col-sm-3">';
         $c .=                           '<strong>Abstand von oben</strong>';
@@ -305,10 +353,6 @@ class Slider {
         $c .=                               '<span class="input-group-addon">px</span>';
         $c .=                           '</div>';
         $c .=                       '</div>';
-
-        $c .=                   '</div><br>';
-
-        $c .=                   '<div class="row">';
 
         $c .=                       '<div class="col-sm-3">';
         $c .=                           '<strong>Abstand von unten</strong>';
@@ -327,6 +371,18 @@ class Slider {
         $c .=                       '</div>';
 
         $c .=                       '<div class="col-sm-3">';
+        $c .=                           '<strong>Abstand nach innen</strong>';
+        $c .=                           '<div class="input-group input-group-sm">';
+        $c .=                               '<input type="text" class="form-control" name="layer_padding" value="'.(!empty($data['layer_padding']) ? $data['layer_padding'] : '').'">';
+        $c .=                               '<span class="input-group-addon">px</span>';
+        $c .=                           '</div>';
+        $c .=                       '</div>';
+
+        $c .=                   '</div>';
+
+        $c .=                   '<div class="row mt10">';
+
+        $c .=                       '<div class="col-sm-3">';
         $c .=                           '<strong>Breite</strong>';
         $c .=                           '<div class="input-group input-group-sm">';
         $c .=                               '<input type="text" class="form-control" name="layer_width" value="'.(!empty($data['layer_width']) ? $data['layer_width'] : 'auto').'">';
@@ -342,17 +398,9 @@ class Slider {
         $c .=                           '</div>';
         $c .=                       '</div>';
 
-        $c .=                   '</div><br>';
+        $c .=                   '</div>';
 
-        $c .=                   '<div class="row">';
-
-        $c .=                       '<div class="col-sm-3">';
-        $c .=                           '<strong>Abstand nach innen</strong>';
-        $c .=                           '<div class="input-group input-group-sm">';
-        $c .=                               '<input type="text" class="form-control" name="layer_padding" value="'.(!empty($data['layer_padding']) ? $data['layer_padding'] : '').'">';
-        $c .=                               '<span class="input-group-addon">px</span>';
-        $c .=                           '</div>';
-        $c .=                       '</div>';
+        $c .=                   '<div class="row mt10">';
 
         $c .=                       '<div class="col-sm-3">';
         $c .=                           '<strong>Rand</strong> <i class="fa fa-info" data-toggle="tooltip" data-placement="top" title="Bsp: 1px solid #000"></i>';
@@ -363,29 +411,41 @@ class Slider {
         $c .=                       '</div>';
 
         $c .=                       '<div class="col-sm-3">';
-        $c .=                           '<strong>Textfarbe</strong> <i class="fa fa-info" data-toggle="tooltip" data-placement="top" title="Bsp: #555"></i>';
-        $c .=                           '<input type="text" class="form-control input-sm" name="layer_color" value="'.(!empty($data['layer_color']) ? urldecode($data['layer_color']) : '').'">';
+        $c .=                           '<strong>Textfarbe</strong>';
+        $c .=                           '<input type="color" data-id="'.$_id_p.'" class="form-control input-sm" name="layer_color" value="'.(!empty($data['layer_color']) ? urldecode($data['layer_color']) : '#555555').'">';
         $c .=                       '</div>';
+
+        $c .=                       '<div class="col-sm-6">';
+        $c .=                           '<strong>Schriftart</strong>';
+        $c .=                           '<select name="layer_font_family" data-id="'.$_id_p.'" class="form-control input-sm change-fontfamiliy">';
+                                            foreach($this->_font_array as $_family){
+                                                foreach($_family as $_family_name => $_array){
+        $c .=                                       '<optgroup label="'.$_family_name.'">';
+                                                        foreach($_array as $_font => $_name){
+        $c .=                                               '<option value="'.$_font.'"'.($data['layer_font_family'] == $_font ? ' selected=""' : '').'>'.$_name.'</option>';
+                                                        }
+        $c .=                                       '</optgroup>';
+                                                }
+                                            }
+
+        $c .=                           '</select>';
+        $c .=                       '</div>';
+        $c .=                   '</div>';
+
+
+        $c .=                   '<div class="row mt10">';
 
         $c .=                       '<div class="col-sm-3">';
         $c .=                           '<strong>Hintergrundfarbe</strong> <i class="fa fa-info" data-toggle="tooltip" data-placement="top" title="Bsp: #ddd"></i>';
         $c .=                           '<input type="text" class="form-control input-sm" name="layer_background_color" value="'.(!empty($data['layer_background_color']) ? urldecode($data['layer_background_color']) : '').'">';
         $c .=                       '</div>';
 
-        $c .=                   '</div><br>';
-
-
-        $c .=                   '<div class="row">';
-
         $c .=                       '<div class="col-sm-3">';
-        $c .=                           '<strong>Schriftgröße</strong>';
-        $c .=                           '<div class="input-group input-group-sm">';
-        $c .=                               '<input type="number" min="14" class="form-control" name="layer_font_size" value="'.(!empty($data['layer_font_size']) ? $data['layer_font_size'] : '18').'">';
-        $c .=                               '<span class="input-group-addon">px</span>';
-        $c .=                           '</div>';
+        $c .=                           '<strong>Schriftgröße <span id="font-size-'.$_id_p.'">'.(!empty($data['layer_font_size']) ? $data['layer_font_size'] : '18').'</span></strong>';
+        $c .=                           '<input class="change-fontsize" data-id="'.$_id_p.'" type="range" name="layer_font_size" min="12" max="80" name="layer_font_size" value="'.(!empty($data['layer_font_size']) ? $data['layer_font_size'] : '18').'">';
         $c .=                       '</div>';
 
-        $c .=                   '</div><br>';
+        $c .=                   '</div>';
 
         $c .=                   '<hr>';
 
@@ -578,7 +638,10 @@ class Slider {
         $c .=           '</div>';
         $c .=       '</li>';
 
-        return $c;
+        return array(
+            'html' => $c,
+            'id' => $_id_p
+        );
     }
 
 
@@ -602,7 +665,7 @@ class Slider {
     public function TimerTPLItem($start = '', $end = ''){
         $_id = $this->getRandomId(5);
 
-        $c  =   '<li class="timer-'.$_id.'">';
+        $c  =   '<li class="timer-'.$_id.'" data-id="'.$_id.'">';
         $c .=       '<input class="layer-start" name="layer-start" type="number" value="'.$start.'">';
         $c .=       '<input class="layer-end" name="layer-end" type="number" value="'.$end.'">';
         $c .=       '<div class="timer-holder"><div class="layer-time"></div></div>';
@@ -665,13 +728,31 @@ class Slider {
                     $_style[] = 'font-size:'.$data['layer_font_size'].'px';
                 }
 
-                $c .=   '<'.$data['layer_tag'].' style="'.implode(';', $_style).'">';
+                if(!empty($data['layer_font_family'])){
+                    $_style[] = 'font-family:'.$this->recursive_return_array_value_by_key($data['layer_font_family'], $this->_font_array);
+                }
+
+                $c .=   '<'.$data['layer_tag'].' id="layer-preview-'.$data['layer_id'].'" data-id="'.$data['layer_id'].'" class="draggable" style="'.implode(';', $_style).'">';
                 $c .=       urldecode($data['layer_text']);
                 $c .=   '</'.$data['layer_tag'].'>';
             }
 
             return $c;
         }
+    }
+
+
+    protected function recursive_return_array_value_by_key($needle, $haystack){
+        $return = false;
+        foreach($haystack as $key => $val){
+            if(is_array($val)){
+                $return = $this->recursive_return_array_value_by_key($needle, $val);
+            }
+            else if($needle === $key){
+                return "$val\n";
+            }
+        }
+        return $return;
     }
 
 
@@ -977,7 +1058,7 @@ class Slider {
                 if(version_compare($_v, $_ov, '>')) {
                     $c  =   '<div class="alert alert-warning alert-dismissible alert-versioncheck" role="alert">';
                     $c .=       '<button type="button" class="close" onclick="Multislider.hideCheck()"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>';
-                    $c .=       '<h4>Es ist eine neuere Version des MultiSliders verfügbar.</h4>';
+                    $c .=       '<h4>Es ist eine neuere Version des MultiSliders verfügbar!</h4>';
                     $c .=       'Ihre Version ist die <code>v'.$_ov.'</code> und die Verfügbare Version <code>v'.$_v.'</code>.<br>';
                     $c .=       'Hier geht es zum <a class="btn btn-default btn-sm" href="https://github.com/bigclick/gambio-gx-multislider/archive/master.zip" target="_blank">Download</a> und hier zur <a class="btn btn-default btn-sm" href="https://github.com/bigclick/gambio-gx-multislider#changelog" target="_blank">Changelog</a>.';
                     $c .=   '</div>';
