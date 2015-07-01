@@ -4,7 +4,7 @@
 
     <div class="row">
         <div class="col-sm-6">
-            <button class="btn btn-primary" type="submit">Status speichern</button>
+            {*<button class="btn btn-primary" type="submit">Status speichern</button>*}
         </div>
         <div class="col-sm-6 text-right">
             <a class="btn btn-primary" href="{$new_link}">neuer Slider</a>

@@ -10,8 +10,11 @@
 * 	Copyright (c) 2014 BigClick GmbH & Co.KG
 * ----------------------------------------------------------------------------------- */
 
+$_code = $_tpl->LayerTPLItem($_GET['lid']);
+
 $_resp = array(
-    'html' => $_tpl->LayerTPLItem($_GET['lid'])
+    'html' => $_code['html'],
+    'id' => $_code['id'],
 );
 
 echo json_encode($_resp);

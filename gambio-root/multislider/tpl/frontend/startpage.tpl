@@ -3,7 +3,7 @@
         {foreach item=s from=$items}
         <li data-transition="{$s.transition}"{if $s.layer_link} data-link="{$s.layer_link}" data-target="{$s.layer_link_target}"{/if} style="visibility: hidden;">
             <a href="multislider/uploads/slider/big/{$s.background_image}">
-                <img src="multislider/uploads/slider/thumb/{$s.background_image}" title="" alt="">
+                <img src="multislider/uploads/slider/thumb/{$s.background_image}" alt="{$s.layer_image_alt}">
             </a>
             {if $s.layer !=''}
                 {foreach item=l from=$s.layer}
