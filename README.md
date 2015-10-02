@@ -1,10 +1,14 @@
-#Gambio GX Multislider v1.3.0
+#Gambio GX Multi-Slider (Bilder + Texte) v1.3.0, v2.5.1.0 ready!
 
-Multislider / Startseiten - Slider für Gambio GX v2.3.x.x mit Text-Layern - kostenlos!
+Multislider für Gambio GX ab v2.1.x.x mit Text-Layern - kostenlos!
 
-Ein kleines Demo-Video findest Du hier: [Gambio Multislider](http://www.stargutschein.de/content/gambio-gx2-slider-modul.html)
+Ein kleines Demo-Video findest Du hier: [Gambio Multislider](https://www.stargutschein.de/content/gambio-gx2-slider-modul.html)
 
+![Multislider 1 Screenshot](http://www.big-click.com/github/Multislider-1.png)
 
+![Multislider 2 Screenshot](http://www.big-click.com/github/Multislider-2.png)
+
+![Multislider 3 Screenshot](http://www.big-click.com/github/Multislider-3.png)
 
 ## Vorbereitung:
 **Achte auf einen sorgfältigen Einbau und befolge genau die Anleitung!**
@@ -14,7 +18,6 @@ Ein kleines Demo-Video findest Du hier: [Gambio Multislider](http://www.starguts
 
 
 ### Update
-
 Der Multisilder ist bereits installiert? Dann braucht nur der Inhalt des Ordners `/gambio-root/` **ohne** den Ordner `/gambio-root/multislider/uploads/` auf den Server geladen werden. Nun noch den Cache vom Shop leeren.
 
 Fertig!
@@ -64,40 +67,43 @@ Dazu bitte einfach im Menüpunkt "Toolbox" im Admin-Bereich den Link "Cache leer
 
 Changelog:
 ----------
-**01.07.2015** - v1.3.0
-- verbessertes Bearbeiten von Text-Layern (Echtzeitvorschau, SnapTo, Hilfslinien, Drag&Drop, usw.)
-- Struktur verbessert
-- Image-Alt Tag ergänzt
+**01.10.2015** - v1.3.0
 
-**30.06.2015** - v1.2.6
-- Javascript Kollision behoben
-- Cookies gegen Local-Storage getauscht
+* für Gambio v.2.5.x.x optimiert
+* sortierbare Slides integriert
+* verbesserter Speicherbutton
 
 **11.02.2015** - v1.2.3
-- kleiner Bugfix
+
+* kleiner Bugfix
 
 **06.02.2015** - v1.2.2
-- kleiner Bugfix
+
+* kleiner Bugfix
 
 **02.11.2014** - v1.2.1
-- Ajax Aufruf umgestellt *("Eieruhr" beim Speichern)*
+
+* Ajax Aufruf umgestellt *("Eieruhr" beim Speichern)*
 
 
 **06.10.2014** - v1.2.0
-- Overload Überlagerung entfernt *(alle Bestandteile der Startseite werden angezeigt)*
-- verbesserter Ajaxupload *(mit größerer Bildvorschau)*
-- Version Checker integriert
-- Slider lassen sich löschen
-- neuer, sauberer Look
-- Firefox lässt nun das bearbeiten von Layern zu
+
+* Multislider für Gambio GX ab v2.1.x.x m
+* verbesserter Ajaxupload *(mit größerer Bildvorschau)*
+* Version Checker integriert
+* Slider lassen sich löschen
+* neuer, sauberer Look
+* Firefox lässt nun das bearbeiten von Layern zu
 
 
 **24.09.2014** - v1.1.0
-- Overload Klassen hinzugefügt *(Eingriffe in die Systemdateien sind nicht mehr notwendig)*
+
+* Overload Klassen hinzugefügt *(Eingriffe in die Systemdateien sind nicht mehr notwendig)*
 
 
 **22.09.2014** - v1.0.0
-- erste stabile Version
+
+* erste Stabile Version
 
 
 Bugs:
