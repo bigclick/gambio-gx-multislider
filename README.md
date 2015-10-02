@@ -1,4 +1,4 @@
-#Gambio GX Multi-Slider (Bilder + Texte) v1.3.0, v2.5.1.0 ready!
+#Gambio GX Multi-Slider (Bilder + Texte) v1.4.0, v2.5.1.0 ready!
 
 Multislider für Gambio GX ab v2.1.x.x mit Text-Layern - kostenlos!
 
@@ -67,7 +67,7 @@ Dazu bitte einfach im Menüpunkt "Toolbox" im Admin-Bereich den Link "Cache leer
 
 Changelog:
 ----------
-**01.10.2015** - v1.3.0
+**01.10.2015** - v1.4.0
 
 * für Gambio v.2.5.x.x optimiert
 * sortierbare Slides integriert
