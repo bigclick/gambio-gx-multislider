@@ -44,3 +44,15 @@ if(isset($_GET['did'])){
 
     xtc_redirect(xtc_href_link('multislider.php'));
 }
+
+include DIR_FS_CATALOG.'release_info.php';
+
+$_ms_version = substr($gx_version, 1, 7);
+
+// Versionsprüfung
+if (version_compare($_ms_version, '2.5.1.0') >= 0){
+	$_new_version = true;
+
+} else {
+	$_new_version = false;
+}

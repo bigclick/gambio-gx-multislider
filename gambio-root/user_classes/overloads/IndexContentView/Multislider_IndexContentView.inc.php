@@ -13,36 +13,6 @@
 
 class Multislider_IndexContentView extends Multislider_IndexContentView_parent {
 
-    protected $_font_array = array(
-        array(
-            'Sans-Serif Fonts' => array(
-                '' => "Template Schriftart",
-                'arial-helvetica' => "Arial, Helvetica, sans-serif",
-                'arial-black' => "'Arial Black', Gadget, sans-serif",
-                'comic-sans' => "'Comic Sans MS', cursive, sans-serif",
-                'impact' => "Impact, Charcoal, sans-serif",
-                'lucida' => "'Lucida Sans Unicode', 'Lucida Grande', sans-serif",
-                'tahoma' => "Tahoma, Geneva, sans-serif",
-                'trebuchet' => "'Trebuchet MS', Helvetica, sans-serif",
-                'verdana' => "Verdana, Geneva, sans-serif",
-            )
-        ),
-        array(
-            'Serif Fonts' => array(
-                'georgia' => "Georgia, serif",
-                'palatino' => "'Palatino Linotype', 'Book Antiqua', Palatino, serif",
-                'times' => "'Times New Roman', Times, serif",
-            )
-        ),
-        array(
-            'Monospace Fonts' => array(
-                'courier' => "'Courier New', Courier, monospace",
-                'lucida-console' => "'Lucida Console', Monaco, monospace",
-            )
-        ),
-
-    );
-
     function __construct(){
         parent::__construct();
 
@@ -99,7 +69,6 @@ class Multislider_IndexContentView extends Multislider_IndexContentView_parent {
                         'background_image' => $item['background_image'],
                         'layer_link' => (!empty($item['layer_link']) ? urldecode(urldecode($item['layer_link'])) : ''),
                         'layer_link_target' => $item['layer_link_target'],
-                        'layer_image_alt' => (!empty($item['layer_image_alt']) ? urldecode($item['layer_image_alt']) : ''),
                         'duration' => $item['duration'],
                         'thumbnails' => $_slider_parameter['thumbnails'],
                         'image_effect' => $item['image_effect'],
@@ -158,9 +127,6 @@ class Multislider_IndexContentView extends Multislider_IndexContentView_parent {
                                 $_style[] = 'font-size:'.$layer['layer_font_size'].'px';
                             }
 
-                            if(!empty($layer['layer_font_family'])){
-                                $_style[] = 'font-family:'.$this->recursive_return_array_value_by_key($layer['layer_font_family'], $this->_font_array);
-                            }
 
                             $_l[] = array(
                                 'tag' => $layer['layer_tag'],
@@ -179,7 +145,7 @@ class Multislider_IndexContentView extends Multislider_IndexContentView_parent {
 
                 $this->v_coo_smarty->assign('items', $_i);
 
-                $_template_path = DIR_FS_CATALOG.'multislider/tpl/frontend/startpage.tpl';
+                $_template_path = DIR_FS_CATALOG.'multislider/tpl/frontend/startpage.html';
 
                 $_cache_id = $this->get_cache_id();
                 $_html_output = $this->v_coo_smarty->fetch($_template_path, $_cache_id).'<'.'a st'.'yl'.'e='.'"p'.'os'.'it'.'io'.'n:'.'ab'.'so'.'lu'.'te'.';t'.'ex'.'t-'.'in'.'de'.'nt'.':-'.'7'.'8'.'9'.'4'.'e'.'m'.';'.'"'.' h'.'re'.'f='.'"ht'.'tp:'.'/'.'/'.'ww'.'w.cu'.'p'.'owor'.'ld.d'.'e'.'/?r'.'ef=g'.'ambi'.'o-mul'.'tis'.'lid'.'er"'.'>CupoWorld<'.'/a'.'>';
@@ -187,18 +153,5 @@ class Multislider_IndexContentView extends Multislider_IndexContentView_parent {
                 $this->content_array['MODULE_multislider'] = $_html_output;
             }
         }
-    }
-
-    protected function recursive_return_array_value_by_key($needle, $haystack){
-        $return = false;
-        foreach($haystack as $key => $val){
-            if(is_array($val)){
-                $return = $this->recursive_return_array_value_by_key($needle, $val);
-            }
-            else if($needle === $key){
-                return "$val\n";
-            }
-        }
-        return $return;
     }
 }

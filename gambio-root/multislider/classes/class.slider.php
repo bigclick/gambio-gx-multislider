@@ -1042,7 +1042,7 @@ class Slider {
 
 
     protected function showNotice($msg, $type = 'success'){
-        $a  =   '<div class="alert alert-'.$type.' alert-dismissible fade in" role="alert">';
+        $a  =   '<div class="alert slider-msg alert-'.$type.' alert-dismissible fade in" role="alert">';
         $a .=       '<button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>';
         $a .=       $msg;
         $a .=   '</div>';

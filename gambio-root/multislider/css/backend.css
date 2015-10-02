@@ -48,6 +48,26 @@ select.form-control {
     font-size: 13px !important;
 }
 
+.gx-compatibility .main-page-content .slider-save-button {
+	position: fixed;
+    right: 0;
+    top: 40%;
+    z-index: 300;
+    padding-top: 5px !important;
+    padding-bottom: 5px !important;
+    height: 80px !important;
+    border-radius: 5px 0 0 5px !important;
+    box-shadow: -1px 0px 5px rgba(0,0,0, 0.275);
+    opacity: .7;
+    filter: alpha(70);
+    font-size: 4em !important;
+}
+
+.gx-compatibility .main-page-content .slider-save-button:hover {
+	opacity: 1;
+	filter: alpha(100);
+}
+
 .mt10 {
     margin-top: 10px;
 }
@@ -86,19 +106,39 @@ a:link, a:visited {
     border-color: #ebccd1;
 }
 
+/* !Haupt Tabs */
 .nav-tabs > li {
     position:relative;
+    margin-right: 5px;
 }
 
 .nav-tabs > li > a {
     display:inline-block;
     padding-right: 25px;
-    margin-right: 6px;
+    padding-left: 25px;
+    margin-right: 0;
     border: 1px solid #eee;
     border-bottom-width: 0;
+    white-space: nowrap;
 }
 
-.nav-tabs > li > span {
+.nav-tabs>li.active,
+.nav-tabs>li.active:hover,
+.nav-tabs>li.active:focus {
+    background-color: #f7f7f7;
+    cursor: ew-resize;
+}
+
+.nav-tabs>li.one-more-slide,
+.nav-tabs>li.one-more-slide:hover,
+.nav-tabs>li.one-more-slide:focus {
+    background-color: #fff;
+    font-size: 14px;
+    border-color: #fff;
+    line-height: 1.2;
+}
+
+.nav-tabs > li > span.delete-slide {
     display: none;
     cursor:pointer;
     position:absolute;
@@ -108,25 +148,29 @@ a:link, a:visited {
     color: #b20000;
 }
 
+.nav-tabs > li:hover {
+	background-color: #f7f7f7;
+}
+
+.nav-tabs > li span.li-grippy {
+	background: transparent url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAUAAAAeCAYAAADkftS9AAAAIklEQVQoU2M4c+bMfxAGAgYYmwGrIIiDjrELjpo5aiZeMwF+yNnOs5KSvgAAAABJRU5ErkJggg==') center center no-repeat;
+	display: none;
+	width: 10px;
+	height: 25px;
+	position: absolute;
+    left: 2px;
+    top: 7px;
+}
+
+.nav-tabs > li:hover span.li-grippy {
+	cursor: ew-resize;
+}
+
 .nav-tabs > li:hover > span {
     display: inline-block;
 }
 
-.nav-tabs>li.active>a,
-.nav-tabs>li.active>a:hover,
-.nav-tabs>li.active>a:focus {
-    background-color: #f7f7f7;
-}
-
-.nav-tabs>li.one-more-slide>a,
-.nav-tabs>li.one-more-slide>a:hover,
-.nav-tabs>li.one-more-slide>a:focus {
-    background-color: #fff;
-    font-size: 14px;
-    border-color: #fff;
-    line-height: 1.2;
-}
-
+/* !Tab Content */
 .list-group {
     margin-bottom: 0;
 }
@@ -317,9 +361,28 @@ img.img-preview {
     width: 40px;
 }
 
+.input-group .form-control {
+	z-index: 1 !important;
+}
+
 .helper-grid {
     display: none;
     height: 400px;
     width: 750px;
     background: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABkAAAAZCAYAAADE6YVjAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAyRpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMC1jMDYxIDY0LjE0MDk0OSwgMjAxMC8xMi8wNy0xMDo1NzowMSAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENTNS4xIE1hY2ludG9zaCIgeG1wTU06SW5zdGFuY2VJRD0ieG1wLmlpZDoxNzhCODFEQjE3NDExMUU1QUEyRkVFMzA1RDk4RjkxNCIgeG1wTU06RG9jdW1lbnRJRD0ieG1wLmRpZDoxNzhCODFEQzE3NDExMUU1QUEyRkVFMzA1RDk4RjkxNCI+IDx4bXBNTTpEZXJpdmVkRnJvbSBzdFJlZjppbnN0YW5jZUlEPSJ4bXAuaWlkOjE3OEI4MUQ5MTc0MTExRTVBQTJGRUUzMDVEOThGOTE0IiBzdFJlZjpkb2N1bWVudElEPSJ4bXAuZGlkOjE3OEI4MURBMTc0MTExRTVBQTJGRUUzMDVEOThGOTE0Ii8+IDwvcmRmOkRlc2NyaXB0aW9uPiA8L3JkZjpSREY+IDwveDp4bXBtZXRhPiA8P3hwYWNrZXQgZW5kPSJyIj8+b9jyswAAADJJREFUeNpi/P//PwONwX8mBjqAUUtGLRm1ZNSSUUtGLRm1ZNSSwW0JC6hdRGtLAAIMAEcpBS+YOJXQAAAAAElFTkSuQmCC') top left;
+}
+
+.gx-compatibility .alert.slider-msg {
+	position: fixed;
+	z-index: 9999;
+	right: 20px;
+	top: 20px;
+	max-width: 320px;
+	box-shadow: 0 2px 5px rgba(0,0,0, 0.275);
+	margin-bottom: 0;
+}
+
+.gx-compatibility .alert.slider-msg .close {
+	top: -10px;
+	right: -3px;
 }
