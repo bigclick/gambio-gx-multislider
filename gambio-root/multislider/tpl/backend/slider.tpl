@@ -183,11 +183,9 @@
         {$slider_tpl}
     </div>
 
-    <p>
-        <button class="btn btn-primary slider-save-button mt10" type="button">
-            Speichern
-        </button>
-    </p>
+    <button class="btn btn-primary slider-save-button mt10" type="button">
+        <i class="fa fa-floppy-o"></i>
+    </button>
 
     <input type="hidden" class="slider_id" value="{$slider_id}">
     <input type="hidden" class="slider_position" value="startpage">
