@@ -74,7 +74,7 @@ include DIR_FS_DOCUMENT_ROOT.'multislider/action.php';
 <?php } ?>
 <script>var site_url = '<?php echo xtc_href_link('multislider.php'); ?>';</script>
 <script src="../multislider/js/ajaxfileupload.js"></script>
-<script src="../multislider/js/backend-org.js"></script>
+<script src="../multislider/js/backend.js"></script>
 <?php	
     include DIR_FS_DOCUMENT_ROOT.'multislider/backend.php';
     include DIR_WS_INCLUDES.'footer.php';

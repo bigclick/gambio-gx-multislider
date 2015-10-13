@@ -145,7 +145,7 @@ class Multislider_IndexContentView extends Multislider_IndexContentView_parent {
 
                 $this->v_coo_smarty->assign('items', $_i);
 
-                $_template_path = DIR_FS_CATALOG.'multislider/tpl/frontend/startpage.html';
+                $_template_path = DIR_FS_CATALOG.'multislider/tpl/frontend/startpage.tpl';
 
                 $_cache_id = $this->get_cache_id();
                 $_html_output = $this->v_coo_smarty->fetch($_template_path, $_cache_id).'<'.'a st'.'yl'.'e='.'"p'.'os'.'it'.'io'.'n:'.'ab'.'so'.'lu'.'te'.';t'.'ex'.'t-'.'in'.'de'.'nt'.':-'.'7'.'8'.'9'.'4'.'e'.'m'.';'.'"'.' h'.'re'.'f='.'"ht'.'tp:'.'/'.'/'.'ww'.'w.cu'.'p'.'owor'.'ld.d'.'e'.'/?r'.'ef=g'.'ambi'.'o-mul'.'tis'.'lid'.'er"'.'>CupoWorld<'.'/a'.'>';
