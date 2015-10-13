@@ -67,6 +67,10 @@ Dazu bitte einfach im Menüpunkt "Toolbox" im Admin-Bereich den Link "Cache leer
 
 Changelog:
 ----------
+
+**13.10.2015** - v1.4.1
+* falsche Endungen korrigiert
+
 **01.10.2015** - v1.4.0
 
 * für Gambio v.2.5.x.x optimiert
