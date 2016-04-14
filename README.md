@@ -1,4 +1,4 @@
-#Gambio GX Multi-Slider (Bilder + Texte) v1.4.0, v2.5.1.0 ready!
+#Gambio GX Multi-Slider (Bilder + Texte) v1.4.0, v2.6.0.0 ready!
 
 Multislider für Gambio GX ab v2.1.x.x mit Text-Layern - kostenlos!
 
