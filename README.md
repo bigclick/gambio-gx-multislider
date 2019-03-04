@@ -2,13 +2,6 @@
 
 Multislider für Gambio GX ab v2.1.x.x mit Text-Layern - kostenlos!
 
-Ein kleines Demo-Video findest Du hier: [Gambio Multislider](https://www.stargutschein.de/content/gambio-gx2-slider-modul.html)
-
-![Multislider 1 Screenshot](http://www.big-click.com/github/Multislider-1.png)
-
-![Multislider 2 Screenshot](http://www.big-click.com/github/Multislider-2.png)
-
-![Multislider 3 Screenshot](http://www.big-click.com/github/Multislider-3.png)
 
 ## Vorbereitung:
 **Achte auf einen sorgfältigen Einbau und befolge genau die Anleitung!**
